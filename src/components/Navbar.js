@@ -10,7 +10,7 @@ const Navbar = () => {
   // const currentUser = { displayName: "felix franko" };
   // const currentUser = false;
   return (
-    <div>
+    <div >
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">       
           <img src={cwjpeg} alt="" width="40" height="40"/>       

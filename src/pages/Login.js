@@ -16,13 +16,16 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signIn, signUpProvider } from "../helpers/firebase";
+import "./login.css";
+
+
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://github.com/tceyhan">
+        Tarık CEYHAN
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -58,8 +61,9 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={theme} sx={{background:URL()}}>
-      <Container component="main" maxWidth="xs">
+  <div className='login'>
+    <ThemeProvider theme={theme}  >
+      <Container component="main" maxWidth="xs" className='login-form'>
         <CssBaseline />
         <Box
           sx={{
@@ -136,5 +140,6 @@ export default function SignIn() {
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
+  </div>
   );
 }

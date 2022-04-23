@@ -1,0 +1,22 @@
+.register{
+    background-image: url("https://picsum.photos/1600/900");
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -20px;
+}
+.register-form{  
+    margin-top: -10vh;
+    background-color: #fff;
+    border-radius: 10px;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow:inset #046582 0px 0px 30px;
+
+}

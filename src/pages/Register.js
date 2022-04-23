@@ -16,6 +16,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../helpers/firebase";
+import "./register.css";
+import { shadows } from '@mui/system';
 
 function Copyright(props) {
   return (
@@ -53,12 +55,12 @@ const Register = () => {
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+  <div className='register'>    
+    <ThemeProvider theme={theme} >
+      <Container component="main" maxWidth="xs"  className="register-form">
         <CssBaseline />
         <Box
-          sx={{
-            marginTop: 8,
+          sx={{            
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -145,6 +147,7 @@ const Register = () => {
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
+  </div>
   );
 }
 
