@@ -1,6 +1,6 @@
 import React from 'react';
-import coding from "../assets/blok.png";
-import styles from "./About.module.css";
+import coding from "../assets/logo.png";
+import styles from "../styles/About.module.css";
 
 const About = () => {
   return (

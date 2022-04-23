@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {
-  createUserWithEmailAndPassword,
   getAuth,
+  createUserWithEmailAndPassword,  
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -37,22 +37,22 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
+//! Register işlemleri
+
 export const createUser = async (email, password, displayName, navigate) => {
   try {
-    let userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    await updateProfile(auth.currentUser, {
-      displayName: displayName,
-    });
-    navigate("/dashboard");
+    let userCredential = await createUserWithEmailAndPassword( auth,email, password);
+    await updateProfile(auth.currentUser, {displayName: displayName});
+    navigate("/"); 
+    // eğer create işlemi başarılı olursa navigate işlemi gerçekleşecek.
     console.log(userCredential);
   } catch (err) {
-    alert(err.message);
+    alert(err.message); 
+    // toastify 
   }
 };
+
+//! login işlemleri
 
 //* https://console.firebase.google.com/
 //* => Authentication => sign-in-method => enable Email/password
@@ -63,16 +63,18 @@ export const signIn = async (email, password, navigate) => {
       email,
       password
     );
-    navigate("/dashboard");
+    navigate("/");
     console.log(userCredential);
   } catch (err) {
     alert(err.message);
+    // toastify
   }
 };
 
 export const logOut = () => {
   signOut(auth);
   alert("logged out successfully");
+  // toastfy
 };
 
 export const userObserver = (setCurrentUser) => {
@@ -96,7 +98,8 @@ export const signUpProvider = (navigate) => {
   signInWithPopup(auth, provider)
     .then((result) => {
       console.log(result);
-      navigate("/dashboard");
+      console.log(result.user.photoURL)      
+      navigate("/");
     })
     .catch((error) => {
       // Handle Errors here.

@@ -16,8 +16,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../helpers/firebase";
-import "./register.css";
-import { shadows } from '@mui/system';
+import "../styles/register.css";
+
 
 function Copyright(props) {
   return (
@@ -37,6 +37,7 @@ const theme = createTheme();
 
 
 const Register = () => {
+  
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
@@ -72,7 +73,7 @@ const Register = () => {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -122,8 +123,8 @@ const Register = () => {
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                  control={<Checkbox value="allowExtraEmails" color="primary" required/>}
+                  label="I want to receive post via email."
                 />
               </Grid>
             </Grid>
@@ -137,7 +138,7 @@ const Register = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link onClick={()=>navigate("/login")} variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
