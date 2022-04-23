@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
-// import About from "../pages/About";
+import About from "../pages/About";
 
 // import PrivateRouter from "./PrivateRouter";
 
@@ -12,7 +12,7 @@ const AppRouter = () => {
     <Router>      
       <Navbar />
       <Routes>
-        {/* <Route path="/login" element={<About />} /> */}
+        <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />

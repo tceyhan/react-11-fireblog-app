@@ -14,7 +14,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">       
           <img src={cwjpeg} alt="" width="40" height="40"/>       
-          <Link to={"/dashboard"} className="navbar-brand text-white">
+          <Link to={"/about"} className="navbar-brand text-white">
             <h6> ──── <span style={{fontSize:"2rem",color:"#F5DEB3"}}>{"<Tarık Ceyhan/>"}</span> Blog ────</h6>
           </Link>
           <div className="d-flex text-white align-items-center">
