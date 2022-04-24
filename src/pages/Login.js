@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signIn, signUpProvider } from "../helpers/firebase";
+import { forgotPassword, signIn, signUpProvider } from "../helpers/firebase";
 import "../styles/login.css";
 import Google from "../assets/Google";
 
@@ -121,7 +121,7 @@ export default function SignIn() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link onClick={()=>navigate("/about")} variant="body2">
+                  <Link onClick={() => forgotPassword(email)} variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
