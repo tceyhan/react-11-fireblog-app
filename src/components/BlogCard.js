@@ -47,7 +47,7 @@ const BlogCard = ({id}) => {
   let navigate = useNavigate();
 
   return (
-    <Card sx={{ maxWidth: 345 }} onClick ={()=>(navigate("/details"))} >       
+    <Card sx={{ maxWidth: 345 }}  >       
     
       <CardHeader
         avatar={
@@ -68,9 +68,10 @@ const BlogCard = ({id}) => {
         height="194"
         image={"https://picsum.photos/1600/900"}
         alt="Paella dish"
+        onClick ={()=>(navigate("/details"))}
       />
 
-      <CardContent>
+      <CardContent onClick ={()=>(navigate("/details"))}>
         <Typography variant="body2" color="text.secondary">
           This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the mussels,
