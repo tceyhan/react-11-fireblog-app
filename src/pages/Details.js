@@ -1,8 +1,17 @@
-import React from 'react'
+
 
 const Details = () => {
   return (
-    <div>Details</div>
+    <div>
+      <div className="dashboard-header"> ─── Details ───</div>
+      
+
+
+
+      
+
+
+    </div>
   )
 }
 
