@@ -2,10 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
-import { useContext} from 'react'
+// import { useContext} from 'react'
 import { useState } from 'react';
 import BlogCard from '../components/BlogCard'
-import { AuthContext } from '../contexts/AuthContext';
+// import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -21,8 +21,8 @@ const Dashboard = () => {
   {id:5, title:"d", image:"aa"},
  
   ]);
-
-  const { currentUser } = useContext(AuthContext);
+  console.log(setBlogs);
+  // const { currentUser } = useContext(AuthContext);
 
   return (
     <Box sx={{ flexGrow: 1, mt:"1vw", ml:"5vw", mr:"5vw" }}>

@@ -15,7 +15,7 @@ const About = () => {
         <h3>Hi, I'am Tarık</h3>
         <h3>I’m currently learning Full-Stack Development Languages.</h3>
         <h3>I know JS, TS, ReactJS, Django, NodeJS, SQL, Python</h3>
-        <h3><a className={styles.aboutEmail} href="mailto:55tc155@gmail.com" className={styles.aboutEmail}>Send E-mail</a> : 55tc155@gmail.com</h3>
+        <h3><a className={styles.aboutEmail} href="mailto:55tc155@gmail.com">Send E-mail</a> : 55tc155@gmail.com</h3>
       </div>
     </div>
   )
