@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {
-  createUserWithEmailAndPassword,
   getAuth,
+  createUserWithEmailAndPassword,  
   GoogleAuthProvider,
   onAuthStateChanged,
   sendPasswordResetEmail,
@@ -20,12 +20,12 @@ import {
 //* https://console.firebase.google.com/ => project settings
 
 // const firebaseConfig = {
-//   apiKey: process.env.REACT_APP_apiKey,
-//   authDomain: process.env.REACT_APP_authDomain,
-//   projectId: process.env.REACT_APP_projectId,
-//   storageBucket: process.env.REACT_APP_storageBucket,
-//   messagingSenderId: process.env.REACT_APP_messagingSenderId,
-//   appId: process.env.REACT_APP_appId,
+//   apiKey:process.env.REACT_APP_apiKey,
+//   authDomain:process.env.REACT_APP_authDomain,
+//   projectId:process.env.REACT_APP_projectId,
+//   storageBucket:process.env.REACT_APP_storageBucket,
+//   messagingSenderId:process.env.REACT_APP_messagingSenderId,
+//   appId:process.env.REACT_APP_appId,
 // };
 
 const firebaseConfig = {
@@ -46,14 +46,11 @@ const auth = getAuth(app);
 export const createUser = async (email, password, displayName, navigate) => {
   try {
     //? yeni bir kullanıcı oluşturmak için kullanılan firebase metodu
-    let userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    let userCredential = await createUserWithEmailAndPassword(auth,email,password);
     //? kullanıcı profilini güncellemek için kullanılan firebase metodu
     await updateProfile(auth.currentUser, {
       displayName: displayName,
+           
     });
     navigate("/");
     toastSuccessNotify("Registered successfully!");
@@ -67,6 +64,7 @@ export const createUser = async (email, password, displayName, navigate) => {
 //* https://console.firebase.google.com/
 //* => Authentication => sign-in-method => enable Email/password
 //! Email/password ile girişi enable yap
+
 export const signIn = async (email, password, navigate) => {
   try {
     //? mevcut kullanıcının giriş yapması için kullanılan firebase metodu
@@ -105,14 +103,17 @@ export const userObserver = (setCurrentUser) => {
 //* https://console.firebase.google.com/
 //* => Authentication => sign-in-method => enable Google
 //! Google ile girişi enable yap
-export const signUpProvider = (navigate) => {
+export const signUpProvider = (navigate,photoURL) => {
   //? Google ile giriş yapılması için kullanılan firebase metodu
   const provider = new GoogleAuthProvider();
   //? Açılır pencere ile giriş yapılması için kullanılan firebase metodu
   signInWithPopup(auth, provider)
     .then((result) => {
-      console.log(result);
+      console.log(result);      
       navigate("/");
+      // foto göstermeyi daha sonra dene
+      const photoURL = result.user.photoURL;
+      console.log(photoURL);
     })
     .catch((error) => {
       // Handle Errors here.

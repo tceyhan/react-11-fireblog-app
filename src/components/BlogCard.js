@@ -52,7 +52,7 @@ const BlogCard = ({id}) => {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {currentUser?.displayName[0]}
+            {'A'}
           </Avatar>
         }
         action={
@@ -60,7 +60,7 @@ const BlogCard = ({id}) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title={currentUser?.displayName}
+        title={"title"}
         subheader={date}
       />
       <CardMedia

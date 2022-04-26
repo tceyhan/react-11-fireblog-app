@@ -46,14 +46,13 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     const displayName = `${firstName} ${lastName}`;
+         
     e.preventDefault();
+    //? firebase.js'de yaptığımız createUser metodunu kullanarak kullanıcıyı oluşturuyoruz.
     createUser(email, password, displayName, navigate);
-    console.log(firstName, lastName, email, password);
+    console.log(firstName, lastName, displayName, email, password);
+    
   };
-    
-    
-  
-
 
   return (
   <div className='register'>    
@@ -121,12 +120,7 @@ const Register = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" required/>}
-                  label="I want to receive post via email."
-                />
-              </Grid>
+              
             </Grid>
             <Button
               type="submit"

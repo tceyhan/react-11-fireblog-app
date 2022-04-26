@@ -47,12 +47,13 @@ export default function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //? firebase.js'de yaptığımız sıgnIn metodunu kullanarak login yapıyoruz
     signIn(email, password, navigate);
     console.log(email, password);
   };
 
   const handleProviderLogin = () => {
-    signUpProvider(navigate);
+     signUpProvider(navigate);
   };
 
   return (
