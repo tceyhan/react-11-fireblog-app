@@ -14,11 +14,12 @@ const AuthContextProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={{ currentUser }}>
       {children}
-      {/* props.children olur eğer yukarda destructured yapılmazsa */}      
+      {/* props.children olur eğer yukarda destructured yapılmazsa */}
+      {/* bu context bütün application ı sarmalaması lazım ki user işlemlerini her yerde kullanabilelim.app.js yi sarmalar. */}      
     </AuthContext.Provider>
   );
 
 };
 export default AuthContextProvider;
 
-{/* bu context bütün application ı sarmalaması lazım ki user işlemlerini her yerde kullanabilelim.app.js yi sarmalar. */}
+
