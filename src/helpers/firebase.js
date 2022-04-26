@@ -84,6 +84,7 @@ export const signIn = async (email, password, navigate) => {
 
 export const logOut = () => {
   signOut(auth);
+  // alert ("Logged out successfully!");
   toastSuccessNotify("Logged out successfully!");
 };
 
@@ -103,13 +104,19 @@ export const userObserver = (setCurrentUser) => {
 //* https://console.firebase.google.com/
 //* => Authentication => sign-in-method => enable Google
 //! Google ile girişi enable yap
+
 export const signUpProvider = (navigate,photoURL) => {
   //? Google ile giriş yapılması için kullanılan firebase metodu
+
   const provider = new GoogleAuthProvider();
+
   //? Açılır pencere ile giriş yapılması için kullanılan firebase metodu
+
   signInWithPopup(auth, provider)
     .then((result) => {
-      console.log(result);      
+      console.log(result);
+      //başarılı ise  navigate yapsın
+      // navigate hook olduğu için sadece componentler içersinde kullanılır firebase içerisinde function olduğu  için kullanılamaz sadece props ile kullanılır. 
       navigate("/");
       // foto göstermeyi daha sonra dene
       const photoURL = result.user.photoURL;
