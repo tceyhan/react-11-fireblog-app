@@ -6,20 +6,17 @@ import Grid from '@mui/material/Grid';
 import { useState } from 'react';
 import BlogCard from '../components/BlogCard'
 // import { AuthContext } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+
 
 
 const Dashboard = () => { 
 
-  const navigate = useNavigate();
+  
   const [blogs, setBlogs] = useState(
   [
   {id:1, title:"a", image:"aa"},
   {id:2, title:"b", image:"aa"},
-  {id:3, title:"c", image:"aa"},
-  {id:4, title:"d", image:"aa"},
-  {id:5, title:"d", image:"aa"},
- 
+  {id:3, title:"c", image:"aa"}, 
   ]);
   console.log(setBlogs);
   // const { currentUser } = useContext(AuthContext);
@@ -29,7 +26,7 @@ const Dashboard = () => {
       <div className="dashboard-header"> ─── Dashboard ───</div>
       <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{bgcolor:"lightgray",  justifyContent:"space-around", gap:2 }}>
         { blogs.map((blog) => (       
-          <BlogCard key={blog.id} {...blog} onClick={() => navigate("/details")} />  
+          <BlogCard key={blog.id} {...blog}  />  
         ))
         }
       </Grid>

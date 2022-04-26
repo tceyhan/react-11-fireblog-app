@@ -32,13 +32,9 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-let today = new Date();
-let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+const BlogCard = ({title, date, describe, photoImg, id, commentCount, VoteCount}) => {
 
-const BlogCard = ({id}) => {
-
-  const [expanded, setExpanded] = useState(false); 
-
+  const [expanded, setExpanded] = useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -47,7 +43,7 @@ const BlogCard = ({id}) => {
   let navigate = useNavigate();
 
   return (
-    <Card sx={{ maxWidth: 345 }}  >       
+    <Card sx={{ maxWidth: 345 }} onClick={() => currentUser? navigate("/details/"+id) : alert("please login in to see details")} >       
     
       <CardHeader
         avatar={
@@ -60,25 +56,25 @@ const BlogCard = ({id}) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title={"title"}
+        title={title}
         subheader={date}
       />
       <CardMedia
         component="img"
         height="194"
-        image={"https://picsum.photos/1600/900"}
-        alt="Paella dish"
-        onClick ={()=>(navigate("/details"))}
+        image={photoImg}
+        alt="Not Photo"
+        
       />
 
-      <CardContent onClick ={()=>(navigate("/details"))}>
+      <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+         {describe}
         </Typography>
       </CardContent>
-
+      
+      {currentUser && (
+        <div>
       <CardActions disableSpacing>
 
         <IconButton aria-label="add to favorites">
@@ -107,13 +103,13 @@ const BlogCard = ({id}) => {
           <Typography paragraph>
             Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
             aside for 10 minutes.
-          </Typography>
-      
-         
-         
+          </Typography>        
         </CardContent>
       </Collapse>
+      </div>
+      )}
     </Card>
+    
   );
 }
 
