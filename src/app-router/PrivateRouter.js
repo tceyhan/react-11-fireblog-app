@@ -11,8 +11,12 @@ const PrivateRouter = () => {
     // along to that page after they login, which is a nicer user experience
     // than dropping them off on the home page.
     return <Navigate to="/login" state={{ from: location }} replace />;
+    //  replace : true çünkü kendi içerisindeki sarmalla yönlendirme yapmak istiyorsak gönderir.
   }
-  return <Outlet />;  
+  return <Outlet />; 
+  // otherwise, render the children of this component (which will be the Routes component) 
+  // and let them handle the rendering of their routes.
+   
 };
 
 export default PrivateRouter;

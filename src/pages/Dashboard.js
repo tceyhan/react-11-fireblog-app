@@ -18,6 +18,7 @@ const Dashboard = () => {
   {id:2, title:"b", image:"aa"},
   {id:3, title:"c", image:"aa"}, 
   ]);
+  console.log(blogs);
   console.log(setBlogs);
   // const { currentUser } = useContext(AuthContext);
 
