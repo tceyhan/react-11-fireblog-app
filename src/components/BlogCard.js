@@ -62,13 +62,17 @@ const BlogCard = ({title, date, describe, photoImg, id, commentCount, VoteCount}
       <CardMedia
         component="img"
         height="194"
-        image={photoImg}
+        image={"https://picsum.photos/400/200?image="+id}
         alt="Not Photo"
         
       />
 
       <CardContent>
         <Typography variant="body2" color="text.secondary">
+          describe kısmı gelecek
+          describe kısmı gelecek
+          describe kısmı gelecek
+          describe kısmı gelecek
          {describe}
         </Typography>
       </CardContent>
