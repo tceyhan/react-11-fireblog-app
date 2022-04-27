@@ -10,6 +10,15 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+
+import {
+  ref,
+  set,
+  push,
+  getDatabase
+  
+  
+} from "firebase/database";
 import {
   toastErrorNotify,
   toastSuccessNotify,
@@ -39,9 +48,13 @@ const firebaseConfig = {
 
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
+
+export const db = getDatabase(app);
+
+
 
 export const createUser = async (email, password, displayName, navigate) => {
   try {
@@ -142,3 +155,17 @@ export const forgotPassword = (email) => {
       // ..
     });
 };
+
+export const addBlog=(info)=>{
+  const db = getDatabase();
+  const blogRef=ref(db,"tarik");
+  const newBlogRef=push(blogRef)
+  set((newBlogRef),{
+      ...info,
+      header: info.header,
+      subtitle: info.subtitle,
+      imageUrl: info.imageUrl,
+      content: info.content,
+      
+  })
+}

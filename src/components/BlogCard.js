@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -13,72 +12,65 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+
 import Commenticon from '@mui/icons-material/ChatBubbleOutline';
 
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { toastWarnNotify } from '../helpers/toastNotify';
 
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
 
-const BlogCard = ({title, date, describe, photoImg, id, commentCount, VoteCount}) => {
 
-  const [expanded, setExpanded] = useState(false);
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+const BlogCard = ({item}) => {
 
   const { currentUser } = useContext(AuthContext);
   let navigate = useNavigate();
 
+  const description = (paragraph, maxLength) => {
+    if (!paragraph) return null;
+    if (paragraph.length <= maxLength) return paragraph;
+    return `${paragraph.substring(0, maxLength)} ...`;
+  };
+
+  const handleDetail = () => {
+    if (!currentUser) {
+      toastWarnNotify("Please login for more.");
+    } else {
+      navigate(`details/${item.id}`);
+    }
+  }
+
   return (
-    <Card sx={{ maxWidth: 345 }} onClick={() => currentUser? navigate("/details/"+id) : alert("please login in to see details")} >       
+    <Card sx={{ maxWidth: 345 }} onClick={handleDetail} >       
     
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {'A'}
+            {item?.user.charAt(0)}
           </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={title}
-        subheader={date}
+        } 
+        title={item?.subtitle?? "No subtitle"}
+        subheader={item?.author}
+        date={item?.published_date}
       />
       <CardMedia
         component="img"
         height="194"
-        image={"https://picsum.photos/400/200?image="+id}
-        alt="Not Photo"
-        
+        image={item?.imageUrl ?? "https://source.unsplash.com/random"}
+        alt="Not Photo"        
       />
 
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          describe kısmı gelecek
-          describe kısmı gelecek
-          describe kısmı gelecek
-          describe kısmı gelecek
-         {describe}
+        <Typography variant="body2" color="text.secondary">          
+            {description(item?.content, 100) ?? "No description"}
         </Typography>
+        <ExpandMoreIcon />
       </CardContent>
       
       {currentUser && (
-        <div>
+
       <CardActions disableSpacing>
 
         <IconButton aria-label="add to favorites">
@@ -89,28 +81,11 @@ const BlogCard = ({title, date, describe, photoImg, id, commentCount, VoteCount}
         </IconButton>
         <IconButton aria-label="comment">
           <Commenticon />
-        </IconButton>
-
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
+        </IconButton>      
 
       </CardActions>
 
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>          
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-            aside for 10 minutes.
-          </Typography>        
-        </CardContent>
-      </Collapse>
-      </div>
+      
       )}
     </Card>
     
