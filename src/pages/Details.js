@@ -1,23 +1,121 @@
-import { useParams, useNavigate } from "react-router-dom";
-import BackSvg from "../assets/BackSvg";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { IconButton } from "@mui/material";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const Details = () => {
-  
-  const { id } = useParams();
+import Notfound from "./Notfound";
+import Button from "@mui/material/Button";
+import { deleteBlog } from "../helpers/functions";
+import { AuthContext } from "../contexts/AuthContext";
 
-  const navigate = useNavigate();
- 
+const Detail= () =>{
+
+  const { currentUser } = useContext(AuthContext);
+  const location = useLocation();
+
+  const [detail, setDetail] = useState({});
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    setDetail(location.state.item);
+
+  }, []);
+  console.log(detail);
+
+  const DeleteClick = () =>{
+    deleteBlog(location.state.item.id);
+    navigate("/")
+  }
+  const EditClick = () =>{
+    navigate("/updateblog", {state:{detail}})
+    
+  }
+
   return (
-    <div>      
-      <div className="dashboard-header">
-      <BackSvg style={{width:"40px"}} onClick={() => navigate(-1)}/>
-      <h1> ─── Details ───</h1>
-      </div>
-      <h1>detaylar{id}</h1>
-      <div><Link to={-1}> Go Back </Link></div>
+    <div style={{ marginTop: "2rem" }}>
+      {currentUser? (
+        <Card sx={{ maxWidth: "80vw", margin: "auto" }}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              height="200"
+              image={detail.imageUrl}
+              alt={detail.item}
+              sx={{ width: 200, margin: "auto" }}
+            />
+            <CardContent sx={{ backgroundColor: "#FFF6EA" }}>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{ fontFamily: "'Girassol', cursive", color: "#046482" }}
+              >
+                {detail.title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {detail.date}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {detail.content}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <Typography
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+              alignItems: "center",
+              gap: "10px",
+              marginBottom: "2rem",
+            }}
+          >
+            <AccountCircleIcon />
+            {detail.user}
+          </Typography>
+          <Typography
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <IconButton>
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton>
+              <ChatBubbleOutlineIcon />
+            </IconButton>
+          </Typography>
+        </Card>
+      ) : (
+        <Notfound />
+      )}
+      {currentUser.email === location.state.item.user && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            marginTop: "1rem",
+          }}
+        >
+          <Button variant="contained" color="success" onClick={EditClick}>
+            Update
+          </Button>
+          <Button variant="contained" color="error" onClick={DeleteClick}>
+            Delete
+          </Button>
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default Details
+export default Detail;

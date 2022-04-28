@@ -1,144 +1,107 @@
-import React,{useContext, useState} from 'react'
-import { useLocation,useNavigate } from 'react-router-dom'
-import {
-  Container,
-  Box,
-  Avatar,
-  Typography,
-  Grid,
-  TextField,
-  Button,
-} from "@mui/material";
-import { BlogContext } from '../contexts/BlogContext';
-import { toastSuccessNotify } from '../helpers/toastNotify';
-import { AuthContext } from '../contexts/AuthContext';
+import React, { useEffect, useState } from 'react'
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import LogoBlog from "../assets/blok.png";
+import { useContext } from "react";
+import {AuthContext} from "../contexts/AuthContext";
+import {  editBlog } from "../helpers/functions";
+import { useLocation, useNavigate } from "react-router-dom";
+import Notfound from "./Notfound";
 
-const UpdateBlog = () => {
+
+function UpdateBlog() {
+  const { currentUser } = useContext(AuthContext);
+  const [updateBlog,setUpdateBlog] = useState();
+  const location = useLocation();
   const navigate = useNavigate()
-
-  const {editBlog} = useContext(BlogContext);
-  const {currentUser} = useContext(AuthContext);
-
-  const location = useLocation()  
-  const item = location.state.item
-  // console.log(item);
-
-  const [posts, setPosts] = useState({
-    id:item.id,
-    title: item.title,
-    content: item.content,
-    imgUrl: item.imgUrl,
-    user:currentUser.email,
-    addDate: new Date(),
-    likeCount: 0,
-    commentCount: 0,
-
-  });
-
+  console.log(location.state.detail)
+  useEffect(() => {
+    setUpdateBlog(location?.state.detail);
+  },[location]);
+  console.log(updateBlog);
   const handleChange = (e) => {
+    const day = new Date().getDate();
+    const month = new Date().getMonth();
+    const year = new Date().getFullYear();
     e.preventDefault();
-    const {name, value} = e.target;
-    setPosts({...posts,[name]:value})
-    console.log(posts)
-
+    const CurUser = currentUser.email;
+    setUpdateBlog({
+      ...updateBlog,
+      [e.target.name]: e.target.value,
+      user: CurUser,
+      date: `${day}-${month + 1}-${year}`,
+    });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    editBlog(posts);
-    toastSuccessNotify("Blog updated successfully!");
-    navigate("/")
-  }
+    editBlog(updateBlog)
+    navigate("/");
 
+  };
   return (
-    <Container className="login-container" style={{ height: "110vh" }}>
-    <Box className="login-box">
-      <Avatar
-        alt="avatar_img"
-        src={item.imgUrl}
-        sx={{ width: 256, height: 256 }}
-      />
-      <Typography
-        variant="h4"
-        component="h1"
-        sx={{ m: 4, fontFamily: "Girassol", color: "#046582" }}
-      >
-        ── UPDATE BLOG ──
-      </Typography>
-    
-      <form 
-      onSubmit={handleSubmit}
-      >
-        <Grid container spacing={4}>
-          <Grid item xs={12}>
-            <TextField
-              id="title"
-              label="Title"
-              name="title"
-              variant="outlined"
-              type="text"
-              autoFocus
-              autoComplete="title"
-              required
-              value={posts.title}
-              onChange={handleChange}
-              
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="imgUrl"
-              label="Image URL"
-              name="imgUrl"
-              variant="outlined"
-              type="text"
-              autoComplete="image-url"
-              required
-              // value={item.imgUrl}
-              defaultValue={posts.imgUrl}
-              onChange={handleChange}
-
-            
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="content"
-              label="Content"
-              name="content"
-              multiline
-              variant="outlined"
-              type="text"
-              rows={10}
-              autoFocus
-              autoComplete="content"
-              required
-              // value={item.content}
-              defaultValue={posts.content}
-              onChange={handleChange}
-
-              
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              style={{ backgroundColor: "#046582", fontWeight: 700 }}
-              variant="contained"
-              color="primary"
-              type="submit"
-              fullWidth
-            >
-              Update
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-      
-    </Box>
-  </Container>
+    <div>
+          {currentUser ? (
+        <>
+          <img src={LogoBlog} alt="" style={{ width: "150px" }} />
+          <h1>----New Blog----</h1>
+          <form onSubmit={handleSubmit}>
+            <Box sx={{ width: "40%", margin: "auto" }}>
+              <Grid
+                container
+                rowSpacing={1}
+                columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              >
+                <Grid item xs={12}>
+                  <TextField
+                    label="Title"
+                    placeholder="Title"
+                    multiline
+                    required
+                    style={{ width: "100%" }}
+                    name="title"
+                    value={updateBlog?.title}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    label="İmage Url"
+                    placeholder="İmage Url"
+                    multiline
+                    required
+                    style={{ width: "100%" }}
+                    name="imageUrl"
+                    value={updateBlog?.imageUrl}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    label="Content"
+                    multiline
+                    rows={15}
+                    required
+                    style={{ width: "100%" }}
+                    name="content"
+                    value={updateBlog?.content}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button variant="contained" color="success" type="submit">
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
+            </Box>
+          </form>
+        </>
+      ) : (
+        <Notfound />
+      )}
+    </div>
   )
 }
 

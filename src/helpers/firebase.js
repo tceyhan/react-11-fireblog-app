@@ -11,14 +11,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 
-import {
-  ref,
-  set,
-  push,
-  getDatabase
-  
-  
-} from "firebase/database";
+
 import {
   toastErrorNotify,
   toastSuccessNotify,
@@ -38,22 +31,19 @@ import {
 // };
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBU2PKNJ7yyf2W-PLlodv1Xc4m830fCK7k",
-  authDomain: "fireblog-39b8d.firebaseapp.com",
-  projectId: "fireblog-39b8d",
-  storageBucket: "fireblog-39b8d.appspot.com",
-  messagingSenderId: "1026300531733",
-  appId: "1:1026300531733:web:ce51e8fa4e7e73338eea1c"
+  apiKey: "AIzaSyC2BL8tZmaPRpwAFMQJcAjIfByLR0mVXCY",
+  authDomain: "fireblogcontext.firebaseapp.com",
+  projectId: "fireblogcontext",
+  storageBucket: "fireblogcontext.appspot.com",
+  messagingSenderId: "289173961325",
+  appId: "1:289173961325:web:8d9a002278cfa1e5ad5d64"
 };
 
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+export const firebase = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
-
-export const db = getDatabase(app);
-
+const auth = getAuth(firebase);
 
 
 export const createUser = async (email, password, displayName, navigate) => {
@@ -156,16 +146,3 @@ export const forgotPassword = (email) => {
     });
 };
 
-export const addBlog=(info)=>{
-  const db = getDatabase();
-  const blogRef=ref(db,"tarik");
-  const newBlogRef=push(blogRef)
-  set((newBlogRef),{
-      ...info,
-      header: info.header,
-      subtitle: info.subtitle,
-      imageUrl: info.imageUrl,
-      content: info.content,
-      
-  })
-}

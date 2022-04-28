@@ -12,7 +12,6 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
 import Commenticon from '@mui/icons-material/ChatBubbleOutline';
 
 import { useContext } from 'react';
@@ -36,9 +35,10 @@ const BlogCard = ({item}) => {
 
   const handleDetail = () => {
     if (!currentUser) {
+      navigate("/login")
       toastWarnNotify("Please login for more.");
     } else {
-      navigate(`details/${item.id}`);
+      navigate(`/detail/${item.id}`, {state: { item }})
     }
   }
 
@@ -48,7 +48,7 @@ const BlogCard = ({item}) => {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {item?.user.charAt(0)}
+            {item?.user?.charAt(0).toUpperCase()}
           </Avatar>
         } 
         title={item?.subtitle?? "No subtitle"}

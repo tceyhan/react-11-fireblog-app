@@ -7,7 +7,7 @@ import About from "../pages/About";
 import Details from "../pages/Details";
 import NewBlog from "../pages/NewBlog";
 import UpdateBlog from "../pages/UpdateBlog";
-import PrivateRouter from "./PrivateRouter";
+// import PrivateRouter from "./PrivateRouter";
 import Notfound from "../pages/Notfound";
 
 const AppRouter = () => {
@@ -19,16 +19,9 @@ const AppRouter = () => {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />        
-        {/* <Route path="/details/:id" element={<Details/>} /> */}
-        <Route element={<PrivateRouter />}>
-          <Route path="/details/:id" element={<Details/>} />
-          <Route path="/updateblog/:id" element={<UpdateBlog/>} />
-          <Route path="/newblog" element={<NewBlog/>}/>
-        </Route>
-          {/* <Route
-          path="/details/:id"
-          element={currentUser ? <Details /> : <Navigate to="/login" />}
-        /> */}
+        <Route path="/details/:id" element={<Details/>} />       
+        <Route path="/newblog" element={<NewBlog />} />
+        <Route path="/updateblog/:id" element={<UpdateBlog/>} />       
         <Route path="*" element={<Notfound />} />
 
       </Routes>
