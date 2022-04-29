@@ -8,7 +8,6 @@ import {BlogContext} from "../contexts/BlogContext";
 import {AuthContext} from "../contexts/AuthContext";
 import { addBlog } from "../helpers/functions";
 import { useNavigate } from "react-router-dom";
-import NotFound from "./Notfound";
 import "../styles/newblog.css";
 
 function NewBlog() {
@@ -22,8 +21,7 @@ function NewBlog() {
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
-    today = dd + '/' + mm + '/' + yyyy;
-    
+    today = dd + '/' + mm + '/' + yyyy;    
     
      e.preventDefault();
         setBlogList({
@@ -31,7 +29,8 @@ function NewBlog() {
       [e.target.name]: e.target.value,
       user: currentUser.email,
       date: today,
-      id: blogList.length + 1
+      displayName: currentUser.displayName,
+      
     });
   };
   const handleSubmit = (e) => {
@@ -43,7 +42,7 @@ function NewBlog() {
   console.log(blogList);
   return (
     <div className="newblog">
-      {currentUser ? (
+      {currentUser && (
         <>
           <img src={BlogPng} alt="" style={{ width: "150px" }} />
           <h1>----New Blog----</h1>
@@ -100,9 +99,7 @@ function NewBlog() {
             </Box>
           </form>
         </>
-      ) : (
-        <NotFound />
-      )}
+      ) }
     </div>
   );
 }

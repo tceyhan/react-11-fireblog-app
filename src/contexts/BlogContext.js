@@ -8,12 +8,7 @@ export const BlogContext = createContext();
 export const BlogContextProvider = ({ children }) => {
  
   const [blogList, setBlogList] = useState([{
-    id: "",
-    header: "",
-    imageUrl: "",
-    content: "",
-    
-    
+     
   }]);
 
  

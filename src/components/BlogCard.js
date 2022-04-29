@@ -42,6 +42,10 @@ const BlogCard = ({item}) => {
       navigate(`/detail/${item.id}`, {state: { item }})
     }
   }
+  const avatar=item?.displayName?.charAt(0).toUpperCase();
+  const title = item?.header.toUpperCase().length>30 ? item?.header.toUpperCase().substring(0, 30)+"...":item?.header.toUpperCase();
+  const subheader=item?.displayName+ " - " + item?.date;
+  const image= item?.imageUrl ?? "https://picsum.photos/500/300?random=1";
 
   return (
     <Card sx={{height:475}}>       
@@ -49,17 +53,17 @@ const BlogCard = ({item}) => {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {item?.user?.charAt(0).toUpperCase()}
+            {avatar}
           </Avatar>
         } 
-        title={item?.header.toUpperCase().substring(0, 30) + "..."}
-        subheader={item?.user+ " - " + item?.date}
+        title={title}
+        subheader={subheader}
         
       />
       <CardMedia
         component="img"
         height="194"
-        image={item?.imageUrl ?? "https://source.unsplash.com/random"}
+        image={image}
         alt="Not Photo"
         onClick={handleDetail}        
       />
@@ -68,7 +72,7 @@ const BlogCard = ({item}) => {
         <Typography variant="body2" color="text.secondary">          
             {description(item?.content, 100)  ?? "No description"}            
         </Typography>
-        <Typography variant="body" color="blue" onClick={handleDetail}>
+        <Typography variant="body" bgcolor="lavender" color="blue" onClick={handleDetail}>
             {item?.content?.length>100 ? "For More...": null}                     
             {item?.content?.length>100 ?<ExpandMoreIcon/>:null}
         </Typography>
