@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, Container } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { IconButton } from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
@@ -43,9 +43,9 @@ const Detail= () =>{
 
  
   return (
-    <div style={{ marginTop: "0rem" }}>
+    <Container>
       <div className="dashboard-header"> ─── Details ───</div>      
-        <Card sx={{ maxWidth: "90vw", margin: "auto" }}>
+        <Card sx={{ maxWidth: "80vw", margin: "auto" }}>
           <CardActionArea>
             <CardMedia              
               component="img"              
@@ -133,7 +133,7 @@ const Detail= () =>{
        
       
      
-    </div>
+    </Container>
   );
 }
 

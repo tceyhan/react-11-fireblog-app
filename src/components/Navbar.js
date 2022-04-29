@@ -28,17 +28,15 @@ const Navbar = () => {
     setAnchorEl(null);
   };
   
-  return (
-    <div >
+  return (    
       <nav className="navbar navbar-expand-lg">
-        <div className="container-fluid">       
-
+        <div className="container-fluid">          
           <img src={cwjpeg} alt="navbar-icon" onClick={()=> navigate("/about")}/>       
           <Link to={"/"} className="navbar-brand text-white">
-            <h6> ──── <span style={{fontSize:"2rem",color:"#F5DEB3"}}>{"<Tarık Ceyhan/>"}</span> Blog ────</h6>
-          </Link>          
+            <h6> ──── <span style={{fontSize:"2rem",color:"#F5DEB3"}}>{"<Tarık Ceyhan/>"}</span> Blog ────</h6>            
+          </Link>
         <div>
-      <div className="text-white">{currentUser?.displayName}</div>
+        <Button className="btn-outline-info text-white h6" onClick={()=>navigate("/profile")}>{currentUser?.displayName}</Button> 
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
@@ -50,12 +48,12 @@ const Navbar = () => {
           border: "none",
           color: "white",
           fontSize: "1rem",
-          marginTop: "0.5rem",
-          marginLeft: "1rem",
+          marginTop: "0.5rem",          
         }}
       >
         <MenuSvg />
       </Button>
+      
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -85,7 +83,7 @@ const Navbar = () => {
     </div>
         </div>
       </nav>
-    </div>
+    
   );
 };
 
