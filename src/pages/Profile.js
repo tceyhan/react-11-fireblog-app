@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Container, Box, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 
 import { AuthContext } from "../contexts/AuthContext";
 import "../styles/profile.css";

@@ -41,7 +41,7 @@ const Detail= () =>{
   }
 
   return (
-    <div style={{ marginTop: "2rem" }}>
+    <div style={{ marginTop: "0rem" }}>
       <div className="dashboard-header"> ─── Details ───</div>      
         <Card sx={{ maxWidth: "90vw", margin: "auto" }}>
           <CardActionArea>

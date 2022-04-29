@@ -48,7 +48,7 @@ const BlogCard = ({item}) => {
   const image= item?.imageUrl ?? "https://picsum.photos/500/300?random=1";
 
   return (
-    <Card sx={{height:475}}>       
+    <Card sx={{height:475}} className="">       
     
       <CardHeader
         avatar={
@@ -62,7 +62,7 @@ const BlogCard = ({item}) => {
       />
       <CardMedia
         component="img"
-        height="194"
+        height="200"
         image={image}
         alt="Not Photo"
         onClick={handleDetail}        

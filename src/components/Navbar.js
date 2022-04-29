@@ -4,6 +4,7 @@ import { logOut } from "../helpers/firebase";
 import { AuthContext } from "../contexts/AuthContext";
 import cwjpeg from "../assets/logo2.png";
 import "../styles/navbar.css";
+import "bootstrap/dist/css/bootstrap.css";
 // import MenuSvg from "../assets/MenuSvg";
 
 
