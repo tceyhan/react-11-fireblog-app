@@ -9,8 +9,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { IconButton } from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ShareIcon from '@mui/icons-material/Share';
 
-import Notfound from "./Notfound";
+
 import Button from "@mui/material/Button";
 import { deleteBlog } from "../helpers/functions";
 import { AuthContext } from "../contexts/AuthContext";
@@ -34,21 +35,19 @@ const Detail= () =>{
     navigate("/")
   }
   const EditClick = () =>{
-    navigate("/updateblog", {state:{detail}})
+    navigate("/update", {state:{detail}})
     
   }
 
   return (
-    <div style={{ marginTop: "2rem" }}>
-      {currentUser? (
-        <Card sx={{ maxWidth: "80vw", margin: "auto" }}>
+    <div style={{ marginTop: "2rem" }}>      
+        <Card sx={{ maxWidth: "90vw", margin: "auto" }}>
           <CardActionArea>
-            <CardMedia
-              component="img"
-              height="200"
+            <CardMedia              
+              component="img"              
               image={detail.imageUrl}
-              alt={detail.item}
-              sx={{ width: 200, margin: "auto" }}
+              alt={detail.header}
+              sx={{ maxWidth: "50%",maxHeight: "50%", margin: "auto" }}
             />
             <CardContent sx={{ backgroundColor: "#FFF6EA" }}>
               <Typography
@@ -57,7 +56,7 @@ const Detail= () =>{
                 component="div"
                 sx={{ fontFamily: "'Girassol', cursive", color: "#046482" }}
               >
-                {detail.title}
+                {detail.header}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {detail.date}
@@ -90,14 +89,16 @@ const Detail= () =>{
             <IconButton>
               <FavoriteIcon />
             </IconButton>
+            <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
             <IconButton>
               <ChatBubbleOutlineIcon />
             </IconButton>
           </Typography>
         </Card>
-      ) : (
-        <Notfound />
-      )}
+       
+      
       {currentUser.email === location.state.item.user && (
         <div
           style={{

@@ -36,10 +36,10 @@ const BlogCard = ({item}) => {
 
   const handleDetail = () => {
     if (!currentUser) {
-      navigate("/login")
+      // navigate("/login")
       toastWarnNotify("Please login for more.");
     } else {
-      navigate(`/detail/${item.id}`, {state: { item }})
+      navigate(`/details/${item.id}`, {state: { item }})
     }
   }
   const avatar=item?.displayName?.charAt(0).toUpperCase();
