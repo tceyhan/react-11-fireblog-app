@@ -9,6 +9,7 @@ import NewBlog from "../pages/NewBlog";
 import UpdateBlog from "../pages/UpdateBlog";
 // import PrivateRouter from "./PrivateRouter";
 import Notfound from "../pages/Notfound";
+import Profile from "../pages/Profile";
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
         <Route path="/details/:id" element={<Details/>} />       
         <Route path="/newblog" element={<NewBlog />} />
         <Route path="/update/:id" element={<UpdateBlog/>} />       
+        <Route path="/profile" element={<Profile/>} />       
         <Route path="*" element={<Notfound />} />
 
       </Routes>

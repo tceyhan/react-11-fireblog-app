@@ -40,6 +40,12 @@ const Navbar = () => {
              >
                New Blog
              </button>
+               <button
+               className="ms-2 btn btn-outline-light"
+               onClick={() => navigate("/profile")}
+             >
+               Profile
+             </button>
              </>
 
 
