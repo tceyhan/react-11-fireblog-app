@@ -31,7 +31,7 @@ const BlogCard = ({item}) => {
   const description = (paragraph, maxLength) => {
     if (!paragraph) return null;
     if (paragraph.length <= maxLength) return paragraph;
-    return `${paragraph.substring(0, maxLength)}`;
+    return `${paragraph.slice(0, maxLength)}`;
   };
 
   const handleDetail = () => {
@@ -70,7 +70,7 @@ const BlogCard = ({item}) => {
 
       <CardContent>
         <Typography variant="body2" color="text.secondary">          
-            {description(item?.content, 100)  ?? "No description"}            
+            {description(item?.content, 250)  ?? "No description"}            
         </Typography>
         <Typography variant="body" bgcolor="lavender" color="blue" onClick={handleDetail}>
             {item?.content?.length>100 ? "For More...": null}                     

@@ -5,8 +5,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;  
-    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
- background-blend-mode: multiply,multiply;
+    background-color: #820467;
 
 }
 .aboutImg{
@@ -20,7 +19,7 @@
 .aboutHead{
     font-size: 1rem;
     font-weight: bold;
-    color: rgb(58, 4, 4);
+    color: rgb(252, 245, 245);
     margin-bottom: 10px;
     font-weight: bold;
     text-align: center;
@@ -36,8 +35,8 @@
     color: rgb(200, 225, 197);
     transform: rotateX(360deg) scale(1.2);
     transition: all 1s ease-in-out;
-    background: rgb(26, 19, 174);
-    background: linear-gradient(66deg, rgb(16, 7, 192) 0%, rgb(100, 100, 196) 12%, rgb(36, 158, 183) 100%);
+    background: rgb(171, 19, 174);
+    background: linear-gradient(66deg, rgb(192, 7, 121) 0%, rgb(100, 100, 196) 12%, rgb(36, 158, 183) 100%);
 }
 .aboutText{
     font-size: 1rem;
@@ -60,8 +59,8 @@
     color: rgb(200, 225, 197);    
     transform: rotateX(45deg) scale(1.2);
     transition: all 0.5s ease-in-out;
-    background: rgb(26, 19, 174);
-    background: linear-gradient(66deg, rgb(56, 49, 178) 0%, rgb(128, 128, 168) 12%, rgba(0,212,255,1) 100%);
+    background: rgb(171, 19, 174);
+    background: linear-gradient(66deg, rgb(192, 7, 121) 0%, rgb(230, 121, 210) 12%, rgb(154, 213, 225) 100%);
     
 }
 

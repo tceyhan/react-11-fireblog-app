@@ -10,9 +10,10 @@ import { IconButton } from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShareIcon from '@mui/icons-material/Share';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 
-
-import Button from "@mui/material/Button";
 import { deleteBlog } from "../helpers/functions";
 import { AuthContext } from "../contexts/AuthContext";
 
@@ -51,6 +52,24 @@ const Detail= () =>{
               alt={detail.header}
               sx={{ maxWidth: "50%",maxHeight: "50%", margin: "auto" }}
             />
+             {currentUser.email === location.state.item.user && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "1rem",
+            marginBottom: "1rem",
+          }}
+        >
+           <IconButton sx={{bgcolor:"green"}}>
+              <ModeEditOutlinedIcon  onClick={EditClick}/>               
+            </IconButton>
+            <IconButton sx={{bgcolor:"red"}}>
+              <DeleteOutlineIcon onClick={DeleteClick}/>
+            </IconButton>
+         
+        </div>
+      )}
             <CardContent sx={{ backgroundColor: "#FFF6EA" }}>
               <Typography
                 gutterBottom
@@ -68,13 +87,25 @@ const Detail= () =>{
               </Typography>
             </CardContent>
           </CardActionArea>
+          
           <Typography
             sx={{
               display: "flex",
               justifyContent: "flex-start",
               alignItems: "center",
-              gap: "10px",
-              marginBottom: "2rem",
+                            
+              marginTop: "1rem",
+            }}
+          >
+            <EditIcon />
+            {detail.displayName}
+          </Typography>
+          <Typography
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+              alignItems: "center",              
+              marginBottom: "1rem",              
             }}
           >
             <AccountCircleIcon />
@@ -92,31 +123,16 @@ const Detail= () =>{
               <FavoriteIcon />
             </IconButton>
             <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+              <ShareIcon />
+            </IconButton>
             <IconButton>
               <ChatBubbleOutlineIcon />
-            </IconButton>
+            </IconButton>           
           </Typography>
         </Card>
        
       
-      {currentUser.email === location.state.item.user && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-evenly",
-            marginTop: "1rem",
-          }}
-        >
-          <Button variant="contained" color="success" onClick={EditClick}>
-            Update
-          </Button>
-          <Button variant="contained" color="error" onClick={DeleteClick}>
-            Delete
-          </Button>
-        </div>
-      )}
+     
     </div>
   );
 }

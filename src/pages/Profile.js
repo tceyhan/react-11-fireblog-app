@@ -8,18 +8,17 @@ const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   // console.log(currentUser);
   return (
-    <Container className="profile">
-      <Typography variant="header" component="h1"  align="center">
-        ── Profile ──
-      </Typography>
-
-      <Typography style={{ margin: "10px" }}>Display Name</Typography>
-      <Typography variant="h5">
+    <>
+    <div className="dashboard-header"> ─── Profile───</div>
+    <Container className="profile">    
+      <Typography className="profile-item">Display Name</Typography>
+      <Typography className="profile-item" variant="h5">
         {currentUser.displayName ?? "No Name"}
       </Typography>
-      <Typography style={{ margin: "10px" }}>E-mail</Typography>
-      <Typography variant="h5">{currentUser.email ?? "No Email"}</Typography>
+      <Typography className="profile-item">E-mail</Typography>
+      <Typography className="profile-item"variant="h5">{currentUser.email ?? "No Email"}</Typography>
     </Container>
+    </>
   );
 };
 
