@@ -10,10 +10,9 @@ export const BlogContextProvider = ({ children }) => {
   const [blogList, setBlogList] = useState([{
     id: "",
     header: "",
-    subtitle: "",
     imageUrl: "",
     content: "",
-    date: "",
+    
     
   }]);
 

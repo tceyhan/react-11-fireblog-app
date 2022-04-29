@@ -6,13 +6,12 @@ export const addBlog=(info)=>{
     const db = getDatabase(firebase);
     const blogRef=ref(db,"tarik");
     const newBlogRef=push(blogRef);
-    set((newBlogRef),{
+    set((newBlogRef),{        
         user: info.user,    
-        header: info.header,
-        subtitle: info.subtitle,
+        header: info.header,        
         imageUrl: info.imageUrl,
         content: info.content,
-        
+        date:info.date,        
     })
   }
   

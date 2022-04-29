@@ -13,6 +13,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Commenticon from '@mui/icons-material/ChatBubbleOutline';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
@@ -30,7 +31,7 @@ const BlogCard = ({item}) => {
   const description = (paragraph, maxLength) => {
     if (!paragraph) return null;
     if (paragraph.length <= maxLength) return paragraph;
-    return `${paragraph.substring(0, maxLength)} ...`;
+    return `${paragraph.substring(0, maxLength)}`;
   };
 
   const handleDetail = () => {
@@ -43,7 +44,7 @@ const BlogCard = ({item}) => {
   }
 
   return (
-    <Card sx={{ maxWidth: 345 }} onClick={handleDetail} >       
+    <Card sx={{height:475}}>       
     
       <CardHeader
         avatar={
@@ -51,27 +52,36 @@ const BlogCard = ({item}) => {
             {item?.user?.charAt(0).toUpperCase()}
           </Avatar>
         } 
-        title={item?.subtitle?? "No subtitle"}
-        subheader={item?.author}
-        date={item?.published_date}
+        title={item?.header.toUpperCase().substring(0, 30) + "..."}
+        subheader={item?.user+ " - " + item?.date}
+        
       />
       <CardMedia
         component="img"
         height="194"
         image={item?.imageUrl ?? "https://source.unsplash.com/random"}
-        alt="Not Photo"        
+        alt="Not Photo"
+        onClick={handleDetail}        
       />
 
       <CardContent>
         <Typography variant="body2" color="text.secondary">          
-            {description(item?.content, 100) ?? "No description"}
+            {description(item?.content, 100)  ?? "No description"}            
         </Typography>
-        <ExpandMoreIcon />
+        <Typography variant="body" color="blue" onClick={handleDetail}>
+            {item?.content?.length>100 ? "For More...": null}                     
+            {item?.content?.length>100 ?<ExpandMoreIcon/>:null}
+        </Typography>
+        <Typography sx={{mt:2}}>        
+          <AccountCircleIcon />
+            {item?.user}        
+        </Typography>
+        
       </CardContent>
       
       {currentUser && (
 
-      <CardActions disableSpacing>
+      <CardActions disableSpacing>  
 
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />

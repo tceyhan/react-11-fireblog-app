@@ -9,6 +9,7 @@ import {AuthContext} from "../contexts/AuthContext";
 import { addBlog } from "../helpers/functions";
 import { useNavigate } from "react-router-dom";
 import NotFound from "./Notfound";
+import "../styles/newblog.css";
 
 function NewBlog() {
 
@@ -17,12 +18,20 @@ function NewBlog() {
   const { currentUser } = useContext(AuthContext);
 
   const handleChange = (e) => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = dd + '/' + mm + '/' + yyyy;
+    
+    
      e.preventDefault();
         setBlogList({
       ...blogList,
       [e.target.name]: e.target.value,
       user: currentUser.email,
-      date: new Date().toLocaleDateString(),
+      date: today,
+      id: blogList.length + 1
     });
   };
   const handleSubmit = (e) => {
@@ -57,18 +66,7 @@ function NewBlog() {
                 onChange={handleChange}
               />
             </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    label="subtitle"
-                    placeholder="subtitle"
-                    multiline
-                    required
-                    style={{ width: "100%" }}
-                    name="subtitle"
-                    value={blogList.subtitle}
-                    onChange={handleChange}
-                  />
-                </Grid>
+                
                 <Grid item xs={12}>
                   <TextField
                     label="İmage Url"
@@ -95,7 +93,7 @@ function NewBlog() {
                 </Grid>
                 <Grid item xs={12}>
                   <Button variant="contained" color="success" type="submit">
-                    Submit
+                    ADD BLOG
                   </Button>
                 </Grid>
               </Grid>
