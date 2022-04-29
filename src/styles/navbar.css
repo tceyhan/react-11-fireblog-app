@@ -15,3 +15,7 @@
     border: 1px solid #118204;  
     box-shadow: 0 0 0 10px rgb(219, 125, 205);
   }
+
+ .menu:hover{
+   background-color: #820467 !important;
+ }

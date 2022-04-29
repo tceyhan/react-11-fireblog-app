@@ -12,9 +12,9 @@ const Dashboard = () => {
   return (
     <Box sx={{ flexGrow: 1, mt:"1vw", ml:"5vw", mr:"5vw" }}>
       <div className="dashboard-header"> ─── Dashboard ───</div>
-      <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }}>     
+      <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} >     
       <Container sx={{maxWidth: 700}}>
-           <BlogForm  blogList= {blogList} />        
+           <BlogForm  blogList= {blogList}   />        
       </Container>
       </Grid>
     </Box>

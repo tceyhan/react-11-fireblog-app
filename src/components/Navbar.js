@@ -49,7 +49,7 @@ const Navbar = () => {
           background: "transparent",
           border: "none",
           color: "white",
-          fontSize: "1.5rem",
+          fontSize: "1rem",
           marginTop: "0.5rem",
           marginLeft: "1rem",
         }}
@@ -63,18 +63,18 @@ const Navbar = () => {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => navigate("/")}>Anasayfa</MenuItem>
+        <MenuItem className="menu" onClick={() => navigate("/")}>Anasayfa</MenuItem>
            
         {currentUser ? (
           <>
-          <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
-          <MenuItem onClick={() => navigate("/newblog")}>New BLog</MenuItem>
-          <MenuItem onClick={() => logOut()}>Log Out</MenuItem>
+          <MenuItem className="menu"onClick={() => navigate("/profile")}>Profile</MenuItem>
+          <MenuItem className="menu"onClick={() => navigate("/newblog")}>New BLog</MenuItem>
+          <MenuItem className="menu"onClick={() => logOut()}>Log Out</MenuItem>
           </>
         ) : (
           <>
-          <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
-          <MenuItem onClick={() => navigate("/register")}>Register</MenuItem>
+          <MenuItem className="menu"onClick={() => navigate("/login")}>Login</MenuItem>
+          <MenuItem className="menu"onClick={() => navigate("/register")}>Register</MenuItem>
           </>
         )}
         
