@@ -35,12 +35,14 @@ const Detail= () =>{
     navigate("/")
   }
   const EditClick = () =>{
-    navigate("/update", {state:{detail}})
+    // navigate("/update/", {state:{detail}})
+    navigate(`/update/${detail.id}`, {state: { detail }})
     
   }
 
   return (
-    <div style={{ marginTop: "2rem" }}>      
+    <div style={{ marginTop: "2rem" }}>
+      <div className="dashboard-header"> ─── Details ───</div>      
         <Card sx={{ maxWidth: "90vw", margin: "auto" }}>
           <CardActionArea>
             <CardMedia              

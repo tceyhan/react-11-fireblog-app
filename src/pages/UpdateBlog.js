@@ -6,32 +6,42 @@ import Button from "@mui/material/Button";
 import LogoBlog from "../assets/blok.png";
 import { useContext } from "react";
 import {AuthContext} from "../contexts/AuthContext";
-import {  editBlog } from "../helpers/functions";
+import { editBlog } from "../helpers/functions";
 import { useLocation, useNavigate } from "react-router-dom";
-import Notfound from "./Notfound";
 
 
-function UpdateBlog() {
+
+const UpdateBlog = () => {
+
   const { currentUser } = useContext(AuthContext);
+
   const [updateBlog,setUpdateBlog] = useState();
+
   const location = useLocation();
+
   const navigate = useNavigate()
+
   console.log(location.state.detail)
+
   useEffect(() => {
-    setUpdateBlog(location?.state.detail);
-  },[location]);
+    setUpdateBlog(location.state.detail);
+  },[]);
+
   console.log(updateBlog);
+
   const handleChange = (e) => {
-    const day = new Date().getDate();
-    const month = new Date().getMonth();
-    const year = new Date().getFullYear();
-    e.preventDefault();
-    const CurUser = currentUser.email;
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = dd + '/' + mm + '/' + yyyy; 
+    e.preventDefault();    
     setUpdateBlog({
       ...updateBlog,
       [e.target.name]: e.target.value,
-      user: CurUser,
-      date: `${day}-${month + 1}-${year}`,
+      user: currentUser.email,
+      displayName: currentUser.displayName,
+      date: today,
     });
   };
   const handleSubmit = (e) => {
@@ -41,13 +51,12 @@ function UpdateBlog() {
 
   };
   return (
-    <div>
-          {currentUser ? (
+    <div className="newblog">         
         <>
           <img src={LogoBlog} alt="" style={{ width: "150px" }} />
-          <h1>----New Blog----</h1>
+          <h1>--Update Blog--</h1>
           <form onSubmit={handleSubmit}>
-            <Box sx={{ width: "40%", margin: "auto" }}>
+            <Box sx={{ width: "80%", margin: "auto" }}>
               <Grid
                 container
                 rowSpacing={1}
@@ -55,13 +64,13 @@ function UpdateBlog() {
               >
                 <Grid item xs={12}>
                   <TextField
-                    label="Title"
+                    label="Header"
                     placeholder="Title"
                     multiline
                     required
                     style={{ width: "100%" }}
-                    name="title"
-                    value={updateBlog?.title}
+                    name="header"
+                    value={updateBlog?.header}
                     onChange={handleChange}
                   />
                 </Grid>
@@ -98,10 +107,7 @@ function UpdateBlog() {
             </Box>
           </form>
         </>
-      ) : (
-        <Notfound />
-      )}
-    </div>
+      </div>
   )
 }
 

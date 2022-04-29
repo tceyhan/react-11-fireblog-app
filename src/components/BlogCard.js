@@ -37,7 +37,7 @@ const BlogCard = ({item}) => {
   const handleDetail = () => {
     if (!currentUser) {
       // navigate("/login")
-      toastWarnNotify("Please login for more.");
+      toastWarnNotify("Please login for more details.");
     } else {
       navigate(`/details/${item.id}`, {state: { item }})
     }
