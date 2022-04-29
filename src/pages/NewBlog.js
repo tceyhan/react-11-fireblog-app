@@ -8,7 +8,8 @@ import {BlogContext} from "../contexts/BlogContext";
 import {AuthContext} from "../contexts/AuthContext";
 import { addBlog } from "../helpers/functions";
 import { useNavigate } from "react-router-dom";
-import "../styles/newblog.css";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+
 
 function NewBlog() {
 
@@ -31,6 +32,7 @@ function NewBlog() {
       date: today,
       displayName: currentUser.displayName,
       
+      
     });
   };
   const handleSubmit = (e) => {
@@ -41,13 +43,13 @@ function NewBlog() {
   };
   console.log(blogList);
   return (
-    <div className="newblog">
+    <Box  sx={{ width: "40%", margin: "auto", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center" }}>
       {currentUser && (
         <>
           <img src={BlogPng} alt="" style={{ width: "150px" }} />
           <h1>----New Blog----</h1>
           <form onSubmit={handleSubmit}>
-            <Box sx={{ width: "40%", margin: "auto" }}>
+            <Box >
               <Grid
                 container
                 rowSpacing={1}
@@ -64,7 +66,7 @@ function NewBlog() {
                 value={blogList.header}
                 onChange={handleChange}
               />
-            </Grid>
+              </Grid>
                 
                 <Grid item xs={12}>
                   <TextField
@@ -90,9 +92,10 @@ function NewBlog() {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item>
                   <Button variant="contained" color="success" type="submit">
-                    ADD BLOG
+                    
+                    ADD BLOG<AddCircleOutlineIcon />
                   </Button>
                 </Grid>
               </Grid>
@@ -100,7 +103,7 @@ function NewBlog() {
           </form>
         </>
       ) }
-    </div>
+    </Box>
   );
 }
 

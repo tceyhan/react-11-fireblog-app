@@ -12,7 +12,8 @@ export const addBlog=(info)=>{
         imageUrl: info.imageUrl,
         content: info.content,
         date:info.date,
-        displayName: info.displayName,        
+        displayName: info.displayName,
+               
     })
   }
   

@@ -46,9 +46,11 @@ const BlogCard = ({item}) => {
   const title = item?.header.toUpperCase().length>30 ? item?.header.toUpperCase().substring(0, 30)+"...":item?.header.toUpperCase();
   const subheader=item?.displayName+ " - " + item?.date;
   const image= item?.imageUrl ?? "https://picsum.photos/500/300?random=1";
+ 
+
 
   return (
-    <Card sx={{height:475, mb:2}} className="blogcard">       
+    <Card sx={{height:475, mb:2}}>       
     
       <CardHeader
         avatar={

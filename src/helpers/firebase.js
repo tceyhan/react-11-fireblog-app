@@ -21,22 +21,13 @@ import {
 //* https://firebase.google.com/docs/auth/web/start
 //* https://console.firebase.google.com/ => project settings
 
-// const firebaseConfig = {
-//   apiKey:process.env.REACT_APP_apiKey,
-//   authDomain:process.env.REACT_APP_authDomain,
-//   projectId:process.env.REACT_APP_projectId,
-//   storageBucket:process.env.REACT_APP_storageBucket,
-//   messagingSenderId:process.env.REACT_APP_messagingSenderId,
-//   appId:process.env.REACT_APP_appId,
-// };
-
 const firebaseConfig = {
-  apiKey: "AIzaSyC2BL8tZmaPRpwAFMQJcAjIfByLR0mVXCY",
-  authDomain: "fireblogcontext.firebaseapp.com",
-  projectId: "fireblogcontext",
-  storageBucket: "fireblogcontext.appspot.com",
-  messagingSenderId: "289173961325",
-  appId: "1:289173961325:web:8d9a002278cfa1e5ad5d64"
+  apiKey:process.env.REACT_APP_apiKey,
+  authDomain:process.env.REACT_APP_authDomain,
+  projectId:process.env.REACT_APP_projectId,
+  storageBucket:process.env.REACT_APP_storageBucket,
+  messagingSenderId:process.env.REACT_APP_messagingSenderId,
+  appId:process.env.REACT_APP_appId,
 };
 
 
@@ -52,7 +43,7 @@ export const createUser = async (email, password, displayName, navigate) => {
     let userCredential = await createUserWithEmailAndPassword(auth,email,password);
     //? kullanıcı profilini güncellemek için kullanılan firebase metodu
     await updateProfile(auth.currentUser, {
-      displayName: displayName,
+      displayName: displayName      
            
     });
     navigate("/");
@@ -74,7 +65,7 @@ export const signIn = async (email, password, navigate) => {
     let userCredential = await signInWithEmailAndPassword(
       auth,
       email,
-      password
+      password,      
     );
     navigate("/");
     toastSuccessNotify("Logged in successfully!");
@@ -108,7 +99,7 @@ export const userObserver = (setCurrentUser) => {
 //* => Authentication => sign-in-method => enable Google
 //! Google ile girişi enable yap
 
-export const signUpProvider = (navigate,photoURL) => {
+export const signUpProvider = (navigate,userPhoto) => {
   //? Google ile giriş yapılması için kullanılan firebase metodu
 
   const provider = new GoogleAuthProvider();
@@ -122,8 +113,8 @@ export const signUpProvider = (navigate,photoURL) => {
       // navigate hook olduğu için sadece componentler içersinde kullanılır firebase içerisinde function olduğu  için kullanılamaz sadece props ile kullanılır. 
       navigate("/");
       // foto göstermeyi daha sonra dene
-      const photoURL = result.user.photoURL;
-      console.log(photoURL);
+      const userPhoto = result.user.photoURL;
+      console.log(userPhoto);
     })
     .catch((error) => {
       // Handle Errors here.

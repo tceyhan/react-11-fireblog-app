@@ -36,9 +36,9 @@ const Navbar = () => {
           <img src={cwjpeg} alt="navbar-icon" onClick={()=> navigate("/about")}/>       
           <Link to={"/"} className="navbar-brand text-white">
             <h6> ──── <span style={{fontSize:"2rem",color:"#F5DEB3"}}>{"<Tarık Ceyhan/>"}</span> Blog ────</h6>
-          </Link>
-          {/*  */}
+          </Link>          
         <div>
+      <div className="text-white">{currentUser?.displayName}</div>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}

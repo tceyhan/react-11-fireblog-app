@@ -28,7 +28,7 @@ const Detail= () =>{
   useEffect(() => {
     setDetail(location.state.item);
 
-  }, []);
+  }, [location]);
   console.log(detail);
 
   const DeleteClick = () =>{
@@ -41,6 +41,7 @@ const Detail= () =>{
     
   }
 
+ 
   return (
     <div style={{ marginTop: "0rem" }}>
       <div className="dashboard-header"> ─── Details ───</div>      
@@ -92,8 +93,7 @@ const Detail= () =>{
             sx={{
               display: "flex",
               justifyContent: "flex-start",
-              alignItems: "center",
-                            
+              alignItems: "center",                            
               marginTop: "1rem",
             }}
           >
