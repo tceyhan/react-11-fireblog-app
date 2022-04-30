@@ -16,6 +16,7 @@ import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 
 import { deleteBlog } from "../helpers/functions";
 import { AuthContext } from "../contexts/AuthContext";
+import BackSvg from "../assets/BackSvg";
 
 const Detail= () =>{
 
@@ -45,6 +46,7 @@ const Detail= () =>{
   return (
     <Grid>
       <Grid className="dashboard-header">
+        <BackSvg style={{maxWidth:50}} onClick={()=> navigate("/")}/>
         <Typography variant='body' > ─── Details ───</Typography>
       </Grid>     
         <Card sx={{ maxWidth: "80vw", margin: "auto" }}>
@@ -56,7 +58,7 @@ const Detail= () =>{
               sx={{ maxWidth: "50%",maxHeight: "50%", margin: "auto" }}
             />
              {currentUser.email === location.state.item.user && (
-        <div
+        <Grid
           style={{
             display: "flex",
             justifyContent: "center",
@@ -64,14 +66,14 @@ const Detail= () =>{
             marginBottom: "1rem",
           }}
         >
-           <IconButton sx={{bgcolor:"green"}}>
-              <ModeEditOutlinedIcon  onClick={EditClick}/>               
+           <IconButton sx={{bgcolor:"green"}}onClick={EditClick}>
+              <ModeEditOutlinedIcon  />               
             </IconButton>
-            <IconButton sx={{bgcolor:"red"}}>
-              <DeleteOutlineIcon onClick={DeleteClick}/>
+            <IconButton sx={{bgcolor:"red"}}onClick={DeleteClick}>
+              <DeleteOutlineIcon />
             </IconButton>
          
-        </div>
+        </Grid>
       )}
             <CardContent sx={{ backgroundColor: "#FFF6EA" }}>
               <Typography
