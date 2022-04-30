@@ -8,6 +8,7 @@ import { useContext } from "react";
 import {AuthContext} from "../contexts/AuthContext";
 import { editBlog } from "../helpers/functions";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Typography } from '@mui/material';
 
 
 
@@ -51,10 +52,9 @@ const UpdateBlog = () => {
 
   };
   return (
-    <div className="newblog">         
-        <>
-          <img src={LogoBlog} alt="" style={{ width: "150px" }} />
-          <h1>--Update Blog--</h1>
+    <Grid container direction="column" justify="center" alignItems="center">
+          <Grid><img src={LogoBlog} alt="" style={{ width: "150px" }} /></Grid> 
+          <Typography variant="h2"  >--Update Blog--</Typography>
           <form onSubmit={handleSubmit}>
             <Box sx={{ width: "80%", margin: "auto" }}>
               <Grid
@@ -106,8 +106,7 @@ const UpdateBlog = () => {
               </Grid>
             </Box>
           </form>
-        </>
-      </div>
+      </Grid>
   )
 }
 

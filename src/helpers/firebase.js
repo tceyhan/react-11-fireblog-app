@@ -99,7 +99,7 @@ export const userObserver = (setCurrentUser) => {
 //* => Authentication => sign-in-method => enable Google
 //! Google ile girişi enable yap
 
-export const signUpProvider = (navigate,userPhoto) => {
+export const signUpProvider = (navigate) => {
   //? Google ile giriş yapılması için kullanılan firebase metodu
 
   const provider = new GoogleAuthProvider();
