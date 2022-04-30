@@ -9,6 +9,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { addBlog } from "../helpers/functions";
 import { useNavigate } from "react-router-dom";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+// import { FormControl } from "@mui/material";
 
 function NewBlog() {
   const navigate = useNavigate();
@@ -52,8 +53,8 @@ function NewBlog() {
     >
       <img src={BlogPng} alt="" style={{ width: "150px" }} />
       <h1>----New Blog----</h1>
-      <form onSubmit={handleSubmit}>
-        <Box>
+      <form onSubmit={handleSubmit} sx={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center"}}>
+        <Box >
           <Grid
             container
             rowSpacing={1}
@@ -96,9 +97,17 @@ function NewBlog() {
                 onChange={handleChange}
               />
             </Grid>
-            <Grid item xs={12}>              
-              <Button className="btn-success text-white h6" >ADD BLOG<AddCircleOutlineIcon /></Button> 
+            <Grid item >
+              <Button variant="outlined" color="success" type="submit" >
+                ADD BLOG
+                <AddCircleOutlineIcon />
+              </Button>             
+              <Button variant="outlined" color="info" type="reset" >
+                RESET
+                <AddCircleOutlineIcon />
+              </Button>             
             </Grid>
+
           </Grid>
         </Box>
       </form>

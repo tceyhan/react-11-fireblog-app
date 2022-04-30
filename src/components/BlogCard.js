@@ -14,6 +14,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Commenticon from '@mui/icons-material/ChatBubbleOutline';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { CardActionArea } from '@mui/material';
 
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
@@ -50,8 +51,8 @@ const BlogCard = ({item}) => {
 
 
   return (
-    <Card sx={{height:475, mb:2}}>       
-    
+    <Card sx={{minHeight:550, mb:2, display:"flex", flexDirection:"column"}}>       
+    <CardActionArea>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -75,8 +76,8 @@ const BlogCard = ({item}) => {
             {description(item?.content, 250)  ?? "No description"}            
         </Typography>
         <Typography variant="body" bgcolor="lavender" color="blue" onClick={handleDetail}>
-            {item?.content?.length>100 ? "For More...": null}                     
-            {item?.content?.length>100 ?<ExpandMoreIcon/>:null}
+            {item?.content?.length>250 ? "For More...": null}                     
+            {item?.content?.length>250 ?<ExpandMoreIcon/>:null}
         </Typography>
         <Typography sx={{mt:2}}>        
           <AccountCircleIcon />
@@ -87,7 +88,7 @@ const BlogCard = ({item}) => {
       
       {currentUser && (
 
-      <CardActions disableSpacing>  
+      <CardActions disableSpacing sx={{ bgcolor: red[50], }}>  
 
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -103,6 +104,7 @@ const BlogCard = ({item}) => {
 
       
       )}
+      </CardActionArea>
     </Card>
     
   );
