@@ -61,7 +61,7 @@ const Navbar = () => {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem className="menu" onClick={() => navigate("/")}>Anasayfa</MenuItem>
+        <MenuItem className="menu" onClick={() => navigate("/")}>Dashboard</MenuItem>
            
         {currentUser ? (
           <>
