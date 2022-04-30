@@ -39,6 +39,7 @@ function NewBlog() {
     setBlogList({ [e.target.name]: "" });
   };
   console.log(blogList);
+
   return (
     <Box
       sx={{
@@ -81,7 +82,7 @@ function NewBlog() {
                 required
                 style={{ width: "100%" }}
                 name="imageUrl"
-                value={blogList.imageUrl}
+                value={blogList.imageUrl?? ""}
                 onChange={handleChange}
               />
             </Grid>
@@ -101,13 +102,8 @@ function NewBlog() {
               <Button variant="outlined" color="success" type="submit" >
                 ADD BLOG
                 <AddCircleOutlineIcon />
-              </Button>             
-              <Button variant="outlined" color="info" type="reset" >
-                RESET
-                <AddCircleOutlineIcon />
-              </Button>             
+              </Button>                          
             </Grid>
-
           </Grid>
         </Box>
       </form>

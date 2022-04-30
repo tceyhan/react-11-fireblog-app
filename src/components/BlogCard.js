@@ -14,7 +14,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Commenticon from '@mui/icons-material/ChatBubbleOutline';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { CardActionArea } from '@mui/material';
+import { Button, CardActionArea, Grid, Tooltip } from '@mui/material';
 
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
@@ -51,7 +51,8 @@ const BlogCard = ({item}) => {
 
 
   return (
-    <Card sx={{minHeight:550, mb:2, display:"flex", flexDirection:"column"}}>       
+    
+  <Card sx={{minHeight:400}} container >       
     <CardActionArea>
       <CardHeader
         avatar={
@@ -76,7 +77,7 @@ const BlogCard = ({item}) => {
             {description(item?.content, 250)  ?? "No description"}            
         </Typography>
         <Typography variant="body" bgcolor="lavender" color="blue" onClick={handleDetail}>
-            {item?.content?.length>250 ? "For More...": null}                     
+            {item?.content?.length>100 ? "For More...": null}                     
             {item?.content?.length>250 ?<ExpandMoreIcon/>:null}
         </Typography>
         <Typography sx={{mt:2}}>        
@@ -87,9 +88,9 @@ const BlogCard = ({item}) => {
       </CardContent>
       
       {currentUser && (
-
-      <CardActions disableSpacing sx={{ bgcolor: red[50], }}>  
-
+        
+      <CardActions disableSpacing sx={{ bgcolor: red[50]}} >
+     
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -99,13 +100,12 @@ const BlogCard = ({item}) => {
         <IconButton aria-label="comment">
           <Commenticon />
         </IconButton>      
-
+        
       </CardActions>
-
       
       )}
       </CardActionArea>
-    </Card>
+  </Card>
     
   );
 }

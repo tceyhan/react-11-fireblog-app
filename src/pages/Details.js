@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea, Container } from "@mui/material";
+import { CardActionArea, Grid } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { IconButton } from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
@@ -43,8 +43,10 @@ const Detail= () =>{
 
  
   return (
-    <Container>
-      <div className="dashboard-header"> ─── Details ───</div>      
+    <Grid>
+      <Grid className="dashboard-header">
+        <Typography variant='body' > ─── Details ───</Typography>
+      </Grid>     
         <Card sx={{ maxWidth: "80vw", margin: "auto" }}>
           <CardActionArea>
             <CardMedia              
@@ -133,7 +135,7 @@ const Detail= () =>{
        
       
      
-    </Container>
+    </Grid>
   );
 }
 

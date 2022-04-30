@@ -1,34 +1,28 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+
 import Grid from '@mui/material/Grid';
-import { Container, IconButton } from '@mui/material';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import { useTheme } from '@mui/material/styles';
+import {   Typography } from '@mui/material';
+
 import { useFetch } from '../helpers/functions';
 import BlogForm from '../components/BlogForm';
 
 
 const Dashboard = () => { 
     const { blogList } = useFetch(); 
-    const theme = useTheme();
+  
 
 
   return (
-    <Box sx={{ flexGrow: 1, mt:"1vw", ml:"5vw", mr:"5vw" }}>
-      <div className="dashboard-header"> ─── Dashboard ───</div>
-      <Grid container spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} color="secondary" >
-      <IconButton aria-label="previous"color='secondary'>
-            {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-          </IconButton>     
-      <Container sx={{maxWidth: 700}}>
-           <BlogForm  blogList= {blogList}   />        
-      </Container>
-      <IconButton aria-label="next" color='secondary'>
-            {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-          </IconButton>
+    <Grid sx={{ flexGrow: 1, mt:"1vw", ml:"1vw", mr:"1vw" }}>
+      <Grid className="dashboard-header">
+        <Typography variant='body' > ─── Dashboard ───</Typography>
+      </Grid>      
+      <Grid spacing={{ xs: 2, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} color="secondary" >     
+         
+      <Grid>   <BlogForm  blogList= {blogList}   />     </Grid>
+      
       </Grid>
-    </Box>
+    </Grid>
   );
 }
 export default Dashboard
