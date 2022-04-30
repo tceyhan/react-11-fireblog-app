@@ -44,7 +44,7 @@ const BlogCard = ({item}) => {
     }
   }
   const avatar=item?.displayName?.charAt(0).toUpperCase();
-  const title = item?.header.toUpperCase().length>30 ? item?.header.toUpperCase().substring(0, 30)+"...":item?.header.toUpperCase();
+  const title = item?.header.toUpperCase().length>30 ? item?.header.toUpperCase().slice(0, 30)+"...":item?.header.toUpperCase();
   const subheader=item?.displayName+ " - " + item?.date;
   const image= item?.imageUrl ?? "https://picsum.photos/500/300?random=1";
  
