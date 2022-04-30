@@ -14,7 +14,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Commenticon from '@mui/icons-material/ChatBubbleOutline';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Button, CardActionArea, Grid, Tooltip } from '@mui/material';
+import { CardActionArea } from '@mui/material';
 
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
