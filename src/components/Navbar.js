@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { logOut } from "../helpers/firebase";
 import { AuthContext } from "../contexts/AuthContext";
@@ -11,7 +11,7 @@ import MenuSvg from "../assets/MenuSvg";
 
 
 const Navbar = () => {
-
+  
   const navigate = useNavigate();
 
   const { currentUser } = useContext(AuthContext);
